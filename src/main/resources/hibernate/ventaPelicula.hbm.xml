@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="dycs.ventapeliculas.domain.entity" default-access="field">
+	<class name="VentaPelicula" table="venta_pelicula">
+        <id name="id" column="venta_pelicula_id">
+            <generator class="native"/>
+        </id>
+        <property name="number" column="number" not-null="true" />
+        <component name="importe" class="dycs.common.domain.valueobject.Money">
+        	<property name="amount" column="importe" not-null="true"/>
+        	<property name="currency" column="currency" not-null="true" />
+        </component>
+        <property name="isLocked" column="locked" />
+        <many-to-one name="customer" class="dycs.customers.domain.entity.Customer" column="customer_id" not-null="true"/>
+        <many-to-one name="pelicula" class="dycs.pelicula.domain.entity.Pelicula" column="pelicula_id" not-null="true"/>
+    </class> 
+</hibernate-mapping>

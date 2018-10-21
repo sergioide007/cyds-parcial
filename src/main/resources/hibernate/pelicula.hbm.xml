@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="dycs.pelicula.domain.entity">
+	<class name="Pelicula" table="pelicula">
+        <id name="id" column="pelicula_id">
+            <generator class="native"/>
+        </id>
+        <property name="nameOriginal" column="name_original" not-null="true"/>
+        <property name="tipoGuion" column="tipo_guion" not-null="true"/>
+        <property name="anio" column="anio" not-null="true"/>
+        <property name="sinopsis" column="sinopsis" not-null="true"/>
+        <property name="fechaEstreno" column="fecha_estreno" not-null="true"/>
+        <property name="duracionMinutos" column="duracion_minutos" not-null="true"/>
+        <property name="financiamiento" column="financiamiento" not-null="true" />
+        <property name="isActive" column="active" not-null="true"/>
+        <many-to-one name="paisId" class="dycs.pais.domain.entity.Pais" column="pais_id" not-null="true"/>
+        <set name="ventaPeliculas" inverse="true" cascade="all">
+            <key column="pelicula_id" not-null="true"/>
+            <one-to-many class="dycs.ventapeliculas.domain.entity.VentaPelicula"/>
+        </set>
+    </class> 
+</hibernate-mapping>

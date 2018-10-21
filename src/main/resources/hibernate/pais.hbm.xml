@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="dycs.pais.domain.entity">
+	<class name="Pais" table="pais">
+        <id name="id" column="pais_id">
+            <generator class="native"/>
+        </id>
+        <property name="name" column="name" not-null="true"/>
+        <set name="peliculas" inverse="true" cascade="all">
+            <key column="pais_id" not-null="true"/>
+            <one-to-many class="dycs.pelicula.domain.entity.Pelicula"/>
+        </set>
+    </class> 
+</hibernate-mapping>
